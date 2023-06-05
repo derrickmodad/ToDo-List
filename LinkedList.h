@@ -10,7 +10,7 @@ private:
 		string item;
 		Node* nextNode = nullptr;
 	};
-	
+
 	Node* head;
 
 public:
@@ -78,10 +78,13 @@ void LinkedList::writeToFile(string fileName)
 {
 	fstream outF(fileName, ios::out);
 	Node* currentNode = head;
+	cout << endl << "DEBUG: " << fileName << endl;
 	while (currentNode != nullptr)
 	{
+		cout << endl << "DEBUG: " << currentNode->item << endl;
 		outF << currentNode->item << endl;
 		currentNode = currentNode->nextNode;
 	}
+	cout << endl << "DEBUG: After loop" << endl;
 	outF.close();
 }
