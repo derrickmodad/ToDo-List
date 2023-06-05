@@ -5,10 +5,22 @@
 using namespace std;
 
 void mainMenu(LinkedList);
+bool firstUse();
 
 int main() {
 	fstream listFile;
-	string fileName = "list.txt";
+	string fileName;
+	if (firstUse())
+	{
+		cout << "DISPLAY: TO DO LIST INTRODUCTION" << endl;
+		cout << "Enter a file name for your to do list (ex: todolist.txt): ";
+		cin >> fileName;
+	}
+	else 
+	{
+		cout << "Enter the file name for your To Do List: ";
+		cin >> fileName;
+	}
 	listFile.open(fileName, ios::in | ios::out);
 	LinkedList list;
 	string transfer;
@@ -20,7 +32,7 @@ int main() {
 	mainMenu(list);
 
 	list.writeToFile(fileName);
-	
+
 	return 0;
 }
 
@@ -33,7 +45,7 @@ void mainMenu(LinkedList list) {
 	cout << "1. Add Item\n2. Delete Item\n3. Display List\n9. Exit Program" << endl;
 	cout << "Selection: ";
 	cin >> choice;
-	
+
 	switch (choice) {
 	case 1: {
 		cin.ignore();
@@ -73,7 +85,23 @@ void mainMenu(LinkedList list) {
 		cout << "*** ERROR: Invalid Item Chosen ***\n\nReturning to program...";
 		mainMenu(list);
 	}
-		break;
+		   break;
+	}
+}
+
+bool firstUse()
+{
+	ifstream checkFile("usedBeforeTrue.txt");
+	if (checkFile.good())	//This means the program has been ran before
+	{
+		checkFile.close();
+		return false;
+	}
+	else					//This means this is first use
+	{
+		ofstream placeFile("usedBeforeTrue.txt");
+		placeFile.close();
+		return true;
 	}
 }
 
