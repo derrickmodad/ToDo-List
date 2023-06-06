@@ -16,12 +16,12 @@ int main() {
 		cout << "Enter a file name for your to do list (ex: todolist.txt): ";
 		cin >> fileName;
 	}
-	else 
+	else
 	{
 		cout << "Enter the file name for your To Do List: ";
 		cin >> fileName;
 	}
-	listFile.open(fileName, ios::in | ios::out);
+	listFile.open(fileName, ios::in);
 	LinkedList list;
 	string transfer;
 
