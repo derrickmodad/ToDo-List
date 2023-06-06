@@ -18,6 +18,6 @@ public:
 	LinkedList();
 	void appendNode(string);
 	void deleteNode(int);
-	void displayList();
+	int displayList();
 	void writeToFile(string);
 };
