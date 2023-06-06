@@ -4,7 +4,7 @@
 #include <fstream>
 using namespace std;
 
-void mainMenu(LinkedList);
+void mainMenu(LinkedList&);
 bool firstUse();
 
 int main() {
@@ -36,7 +36,7 @@ int main() {
 	return 0;
 }
 
-void mainMenu(LinkedList list) {
+void mainMenu(LinkedList& list) {
 	int choice = 0;
 	string content;
 	char ch;
