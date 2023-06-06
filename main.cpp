@@ -40,6 +40,7 @@ void mainMenu(LinkedList& list) {
 	int choice = 0;
 	string content;
 	char ch;
+	int listLen;
 
 	cout << "Select an option: " << endl;
 	cout << "1. Add Item\n2. Delete Item\n3. Display List\n9. Exit Program" << endl;
@@ -56,14 +57,20 @@ void mainMenu(LinkedList& list) {
 		break;
 	}
 	case 2: {
-		cout << "Enter list item number to be removed: ";
-		cin >> choice;										//Find a way to validate input (may need to step through list and count number of nodes to verify)(very easy member function of LL class)
-		list.deleteNode(choice);
+		cout << "\n\n*****************\n - Remove Item - \n\n";
+		listLen = list.displayList();
+		if (listLen)
+		{
+			cout << "\nEnter list item number to be removed: ";
+			cin >> choice;										//Find a way to validate input (may need to step through list and count number of nodes to verify)(very easy member function of LL class)
+			list.deleteNode(choice);
+		}
+		else
+			cout << "No items to delete!" << endl;
 		mainMenu(list);
 		break;
 	}
 	case 3: {
-		cout << endl;
 		list.displayList();
 		cout << endl;
 		mainMenu(list);
@@ -73,7 +80,7 @@ void mainMenu(LinkedList& list) {
 		cout << "Are you sure you wish to exit? (Y/N): ";
 		cin >> ch;
 		if (toupper(ch) == 'Y') {
-			cout << "Exiting program...";
+			cout << "Exiting program ";
 		}
 		else {
 			cout << "Returning to program...";
