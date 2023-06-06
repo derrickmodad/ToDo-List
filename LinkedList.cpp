@@ -44,15 +44,21 @@ void LinkedList::deleteNode(int num) {
 }
 
 //Display List
-void LinkedList::displayList() {
+int LinkedList::displayList() {
 	Node* currentNode = head;
-	int counter = 1;
+	int counter = 0;
+	if (currentNode == nullptr)
+		int counter = 0;
+	else
+		counter = 1;
+	cout << "\n*****************\n - To Do - \n";
 	while (currentNode != nullptr)
 	{
 		cout << counter << ". " << currentNode->item << endl;
 		currentNode = currentNode->nextNode;
 		counter++;
 	}
+	return counter;
 }
 
 void LinkedList::writeToFile(string fileName)
@@ -62,15 +68,14 @@ void LinkedList::writeToFile(string fileName)
 	Node* currentNode = head;
 	if (outF.is_open())
 	{
-		cout << "\nSaving to file..." << endl;
+		cout << "and saving to file..." << endl;
 		while (currentNode != nullptr)
 		{
 			outF << currentNode->item << endl;
 			currentNode = currentNode->nextNode;
 		}
+		outF.close();
 	}
 	else
 		cout << "Error opening save file..." << endl;
-
-	outF.close();
 }
