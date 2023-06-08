@@ -14,7 +14,6 @@ private:
 	Node* head;
 
 public:
-	
 	LinkedList();
 	void appendNode(string);
 	void deleteNode(int);
