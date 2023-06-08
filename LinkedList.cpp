@@ -13,9 +13,7 @@ void LinkedList::appendNode(string content) {
 	newNode->nextNode = nullptr;					//Prep the pointer
 
 	if (head == nullptr)							//If there is no head (meaning that this is the first node)
-	{
 		head = newNode;								//Make this node the head
-	}
 	else											//Else
 	{
 		currentNode = head;							//Set currentNode to head for traversal
@@ -51,7 +49,7 @@ int LinkedList::displayList() {
 		int counter = 0;
 	else
 		counter = 1;
-	cout << "\n*****************\n - To Do - \n";
+	cout << "\n*****************\n";
 	while (currentNode != nullptr)
 	{
 		cout << counter << ". " << currentNode->item << endl;
@@ -77,5 +75,5 @@ void LinkedList::writeToFile(string fileName)
 		outF.close();
 	}
 	else
-		cout << "Error opening save file..." << endl;
+		cout << "\n*** Error opening save file ***" << endl;
 }
