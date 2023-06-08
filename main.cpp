@@ -9,21 +9,29 @@ bool firstUse();
 
 int main() {
 	fstream listFile;
-	string fileName;
+	string fileName, transfer;
+	fstream dir("directory.txt", ios::in | ios::out | ios::app);
 	if (firstUse())
 	{
 		cout << "DISPLAY: TO DO LIST INTRODUCTION" << endl;
 		cout << "Enter a file name for your to do list (ex: todolist.txt): ";
 		cin >> fileName;
+		dir << fileName << endl;
+		dir.close();
 	}
 	else
 	{
-		cout << "Enter the file name for your To Do List: ";
+		while (getline(dir, transfer))
+			cout << transfer << endl;
+		cout << "Enter the file name for your \nlist or enter a name for a new list (include .txt at the end): ";
 		cin >> fileName;
+		dir << fileName << endl;
+		dir.close();
 	}
+
 	listFile.open(fileName, ios::in);
+	
 	LinkedList list;
-	string transfer;
 
 	while (getline(listFile, transfer))
 		list.appendNode(transfer);
@@ -41,7 +49,8 @@ void mainMenu(LinkedList& list) {
 	string content;
 	char ch;
 	int listLen;
-
+	list.displayList();
+	cout << endl;
 	cout << "Select an option: " << endl;
 	cout << "1. Add Item\n2. Delete Item\n3. Display List\n9. Exit Program" << endl;
 	cout << "Selection: ";
@@ -57,12 +66,12 @@ void mainMenu(LinkedList& list) {
 		break;
 	}
 	case 2: {
-		cout << "\n\n*****************\n - Remove Item - \n\n";
+		cout << "\n\n*****************\n - Remove Item - \n";
 		listLen = list.displayList();
 		if (listLen)
 		{
 			cout << "\nEnter list item number to be removed: ";
-			cin >> choice;										//Find a way to validate input (may need to step through list and count number of nodes to verify)(very easy member function of LL class)
+			cin >> choice;										
 			list.deleteNode(choice);
 		}
 		else
@@ -71,7 +80,6 @@ void mainMenu(LinkedList& list) {
 		break;
 	}
 	case 3: {
-		list.displayList();
 		cout << endl;
 		mainMenu(list);
 		break;
@@ -113,8 +121,5 @@ bool firstUse()
 }
 
 /* To Do
-	Add check for correct item number (if it's in range)
-	Add check for first use (use a file to tell or some sort of flag)
 	Add option to use other file names (allow user to enter file name)(this enables multiple lists)
-	Add verification (make sure file opens)
 */
